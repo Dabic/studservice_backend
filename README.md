@@ -2,6 +2,7 @@
 <br>
 
 >How to download the project?
+
 In command line type the following:
 ```
  git clone https://github.com/Dabic/studservice_backend.git
@@ -9,6 +10,7 @@ In command line type the following:
  <br>
  
 >Configure project dependencies
+
 In command line type the following:
 ```
 pip install -r requirements.txt
