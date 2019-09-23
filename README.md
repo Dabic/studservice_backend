@@ -29,8 +29,10 @@ If you are using Python x84 then type the following:
 ```
 pip install mysqlclient-1.4.4-cp37-cp37m-win32.whl
 ```
+<br>
 
 >Starting the application
+
 To run the server type the following code snippet:
 ```
 python manage.py runserver
