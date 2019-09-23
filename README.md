@@ -1,7 +1,7 @@
 # **Studsentski servis - Backend**
 <br>
 
-> ##How to download the project?
+>How to download the project?
 In command line type the following:
 ```
  git clone https://github.com/Dabic/studservice_backend.git
