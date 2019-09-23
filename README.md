@@ -16,7 +16,7 @@ In command line type the following:
 pip install -r requirements.txt
 ```
 
-This will install dependencies need for to project expect mysqlclient.
+This will install dependencies needed for the project, expect mysqlclient.
 <br>
 <br>
 >Installing mysqlclient
@@ -26,7 +26,7 @@ If you are using Python x64 then type the following:
 pip install mysqlclient-1.4.4-cp37-cp37m-win_amd64.whl
 ```
 
-If you are using Python x84 then type the following:
+If you are using Python x32 then type the following:
 ```
 pip install mysqlclient-1.4.4-cp37-cp37m-win32.whl
 ```
