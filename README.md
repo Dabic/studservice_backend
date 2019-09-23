@@ -25,7 +25,6 @@ If you are using Python x64 then type the following:
 ```
 pip install mysqlclient-1.4.4-cp37-cp37m-win_amd64.whl
 ```
-<br>
 
 If you are using Python x84 then type the following:
 ```
