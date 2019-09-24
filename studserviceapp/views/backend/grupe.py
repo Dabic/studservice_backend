@@ -52,3 +52,15 @@ def unos_grupe(request):
         for predmet in predmeti:
             izbornagrupa.predmeti.add(Predmet.objects.get(naziv=predmet['value']))
     return HttpResponse(status.HTTP_200_OK)
+
+@api_view(['POST'])
+def izmeni_grupu(request):
+    grupa = IzbornaGrupa.objects.get(id = request.data['id'])
+    grupa.kapacitet = request.data['kapacitet']
+    grupa.aktivna = request.data['aktivna']
+    predmeti = []
+    for predmentNaziv in request.data['predmeti']:
+        predmeti.append(Predmet.objects.get(naziv=predmentNaziv['naziv']))
+    grupa.predmeti.set(predmeti)
+    grupa.save()
+    return HttpResponse(status.HTTP_200_OK)
