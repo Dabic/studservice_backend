@@ -51,7 +51,7 @@ class Student(models.Model):
     smer = models.CharField(max_length=20)
     nalog = models.ForeignKey(Nalog, on_delete=models.CASCADE)  # BILO JE CASCADE
     grupa = models.ManyToManyField(Grupa)
-    icon = models.ImageField(upload_to='media', default='/media/no-image.gif')
+    icon = models.ImageField(upload_to='media', default='no-image.gif')
 
     class Meta:
         verbose_name_plural = "studenti"
