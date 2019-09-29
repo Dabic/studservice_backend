@@ -1,22 +1,25 @@
 from django.urls import path
-from studserviceapp.views.backend import rasporedi, predmeti, grupe, izborne_grupe, studenti
+from studserviceapp.views.backend import rasporedi, predmeti, grupe, izborne_grupe, studenti, obavestenja, auth
 
 urlpatterns = [
 
     path('raspored/', rasporedi.prikazRasporeda),
 
-    path('spisak-grupa/', grupe.getAllGrupeSaStudentima),
+    path('unos-grupe/', izborne_grupe.unosIzborneGrupe),
 
-    path('unos-grupe/', izborne_grupe.unosGrupe),
+    path('obrisi-grupu/', izborne_grupe.obrisiIzbornuGrupu),
 
-    path('obrisi-grupu/', izborne_grupe.obrisiGrupu),
-
-    path('izmeni-grupu/', izborne_grupe.izmeniGrupu),
+    path('izmeni-grupu/', izborne_grupe.izmeniIzbornuGrupu),
 
     path('izborne-grupe/<str:godina>/', izborne_grupe.vratiIzborneGrupe),
 
     path('studenti/<str:tip>', studenti.getAllStudenti),
 
+    path('grupe/<str:godina>/', grupe.vratiGrupe),
+
     path('predmeti/', predmeti.getAllPredmeti),
 
+    path('unos-obavestenja/', obavestenja.unos_obavestenja),
+
+    path('authorize/', auth.authorize),
 ]

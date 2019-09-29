@@ -75,6 +75,12 @@ def vrati_podatke_tekuceg_semestra():
     return (semestar.vrsta, semestar.skolska_godina_pocetak, semestar.skolska_godina_kraj, semestar.aktivan)   #ako ne postoji aktivan semestar ovo vraca None exception
 
 
+def vrati_trenutni_semestar():
+    semestar = Semestar.objects.filter(aktivan=True).order_by(
+        '-id').first()  # ako ima više aktivnih (greska), ali vratice onaj sa najvecim id-jem, nema izuzetka
+    if semestar is None:
+        semestar = Semestar.objects.order_by('-id').first()
+    return semestar
 
 
 def vrati_raspored_nastave_tekuceg_semestra():

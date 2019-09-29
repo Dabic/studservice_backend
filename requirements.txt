@@ -1,5 +1,6 @@
 djangorestframework
 django
+Django
 wheel
 Pillow
 google-api-python-client

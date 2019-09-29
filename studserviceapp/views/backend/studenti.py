@@ -7,8 +7,6 @@ from studserviceapp_api.serializers.grupa_serializer import GrupaSerializer
 from studserviceapp_api.serializers.student_serializer import StudentSerializer
 from django.shortcuts import HttpResponse
 
-from _collections import defaultdict
-
 
 @api_view(['GET'])
 def getAllStudenti(request, tip):

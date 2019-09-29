@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 VRSTA_SEMESTRA_CHOICES = (
     ('parni', 'parni'),
@@ -51,7 +51,7 @@ class Student(models.Model):
     smer = models.CharField(max_length=20)
     nalog = models.ForeignKey(Nalog, on_delete=models.CASCADE)  # BILO JE CASCADE
     grupa = models.ManyToManyField(Grupa)
-    icon = models.ImageField(upload_to='media', default='no-image.gif')
+    icon = models.CharField(max_length=400, default='http://127.0.0.1:8000/media/no-image.gif')
 
     class Meta:
         verbose_name_plural = "studenti"
@@ -210,7 +210,7 @@ class Obavestenje(models.Model):
     naslov = models.CharField(max_length=100)
     datum_postavljanja = models.DateTimeField()
     tekst = models.CharField(max_length=1000)
-    fajl = models.FileField(upload_to='obavestenja/')
+    fajl = models.FileField(upload_to='fajlovi_obavestenja/')
 
     class Meta:
         verbose_name_plural = "obavestenja"

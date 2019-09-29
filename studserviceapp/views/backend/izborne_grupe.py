@@ -18,7 +18,7 @@ def vratiIzborneGrupe(request, godina):
 
 
 @api_view(['POST'])
-def unosGrupe(request):
+def unosIzborneGrupe(request):
     [semestar_vrsta,
      sk_pocetak,
      sk_kraj,
@@ -46,22 +46,23 @@ def unosGrupe(request):
 
 
 @api_view(['POST'])
-def izmeniGrupu(request):
+def izmeniIzbornuGrupu(request):
     grupa = IzbornaGrupa.objects.get(id=request.data['id'])
     grupa.kapacitet = request.data['kapacitet']
     grupa.aktivna = request.data['aktivna']
     predmeti = []
-    for predmentNaziv in request.data['predmeti']:
-        predmeti.append(Predmet.objects.get(naziv=predmentNaziv['naziv']))
+    for predmetNaziv in request.data['predmeti']:
+        predmeti.append(Predmet.objects.get(naziv=predmetNaziv['naziv']))
     grupa.predmeti.set(predmeti)
     grupa.save()
     return HttpResponse(status.HTTP_200_OK)
 
 
 @api_view(['POST'])
-def obrisiGrupu(request):
+def obrisiIzbornuGrupu(request):
     oznaka_grupe = request.data['oznaka_grupe']
-    za_smestar = request.data['za_semestar']
+    #za_semestar = request.data['za_semestar']
+    #Da li da getujem izbrone grupe za trenutni semestar ili nikada nece biti izbornih grupa iz proslog semestra?
     izborna = IzbornaGrupa.objects.get(oznaka_grupe=oznaka_grupe)
     izborna.delete()
     return HttpResponse(status.HTTP_200_OK)
