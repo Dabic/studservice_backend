@@ -1,0 +1,4 @@
+from .SekretarPermission import SekretarPermission
+from .StudentPermission import StudentPermission
+from .AdminPermission import AdminPermission
+from .NastavnikPermission import NastavnikPermission

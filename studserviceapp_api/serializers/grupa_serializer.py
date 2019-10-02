@@ -2,6 +2,8 @@ from rest_framework import serializers
 from studserviceapp.models import Grupa
 from .semestar_serializer import SemestarSerializer
 from studserviceapp.korisne_funkcije import broj_studenata_grupe
+
+
 class GrupaSerializer(serializers.ModelSerializer):
     semestar = SemestarSerializer
     broj_studenata = serializers.SerializerMethodField()

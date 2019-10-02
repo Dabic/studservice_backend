@@ -1,13 +1,15 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.renderers import JSONRenderer
 from django.shortcuts import HttpResponse
 from rest_framework import status
 from studserviceapp_api.serializers.izbornagrupa_serializer import IzbornaGrupaSerializer
+from studserviceapp_api.permissions.AdminPermission import AdminPermission
 from studserviceapp.models import IzbornaGrupa, Predmet, Semestar
 
 
 @api_view(['GET'])
-def vratiIzborneGrupe(request, godina):
+@permission_classes([AdminPermission])
+def getIzborneGrupe(request, godina):
     izborneGrupe = []
     if(godina != 'sve'):
         izborneGrupe = IzbornaGrupa.objects.filter(oznaka_grupe__startswith=godina)
@@ -18,6 +20,7 @@ def vratiIzborneGrupe(request, godina):
 
 
 @api_view(['POST'])
+@permission_classes([AdminPermission])
 def unosIzborneGrupe(request):
     [semestar_vrsta,
      sk_pocetak,
@@ -46,6 +49,7 @@ def unosIzborneGrupe(request):
 
 
 @api_view(['POST'])
+@permission_classes([AdminPermission])
 def izmeniIzbornuGrupu(request):
     grupa = IzbornaGrupa.objects.get(id=request.data['id'])
     grupa.kapacitet = request.data['kapacitet']
@@ -59,6 +63,7 @@ def izmeniIzbornuGrupu(request):
 
 
 @api_view(['POST'])
+@permission_classes([AdminPermission])
 def obrisiIzbornuGrupu(request):
     oznaka_grupe = request.data['oznaka_grupe']
     #za_semestar = request.data['za_semestar']

@@ -18,8 +18,7 @@ class KljucRecnika(object):
 generisane_moguce_ucionice = "rg1,Rg1,RG1,rg2,Rg2,RG2,rg3,Rg3,RG3,rg4,Rg4,RG4,rg5,Rg5,RG5,rg6,Rg6,RG6,rg7,Rg7,RG7,rg8,Rg8,RG8,rg9,Rg9,RG9,rg10,Rg10,RG10,rg11,Rg11,RG11,rg12,Rg12,RG12,Atelje,Kolarac"
 
 def broj_studenata_grupe(grupa):
-    #student_grupa = Student.grupa.through.objects.filter(grupa_id = grupa.id)
-    student_grupa = Student.grupa.through.objects.filter(id=grupa.id)
+    student_grupa = Student.grupa.through.objects.filter(grupa_id=grupa.id)
     return len(student_grupa)
 
 def vratiTrenutnuGrupuZaStudenta(student):

@@ -19,7 +19,7 @@ def authorize(request):
     try:
         nalog = Nalog.objects.get(username=username)
     except Nalog.DoesNotExist:
-        return HttpResponse(status.HTTP_401_UNAUTHORIZED)
+        return HttpResponse({'error': 'Niste autoratizovani'}, status.HTTP_401_UNAUTHORIZED)
 
     if nalog.uloga == 'Administrator':
         nalogSerialized = NalogSerializer(nalog).data
@@ -27,7 +27,8 @@ def authorize(request):
             "ime": response['given_name'],
             "prezime": response['family_name']
         }
-        json = JSONRenderer().render({'nalog': nalogSerialized, 'admin': adminSerialized})
+        json = JSONRenderer().render({'nalog': nalogSerialized, 'user': adminSerialized,
+                                      'token': request.data['token'], 'authenticatedAs': 'Administrator'})
         return HttpResponse(json)
     elif nalog.uloga == 'student':
         student = Student.objects.get(nalog_id=nalog.id)
@@ -35,13 +36,15 @@ def authorize(request):
         student.save()
         nalogSerialized = NalogSerializer(nalog).data
         studentSerialized = StudentSerializer(student).data
-        json = JSONRenderer().render({'nalog': nalogSerialized, 'student': studentSerialized})
+        json = JSONRenderer().render({'nalog': nalogSerialized, 'user': studentSerialized,
+                                      'token': request.data['token'], 'authenticatedAs': 'Student'})
         return HttpResponse(json)
     elif nalog.uloga == 'Nastavnik':
         nastavnik = Nastavnik.objects.get(nalog_id=nalog.id)
         nastavnikSerialized = NastavnikSerializer(nastavnik).data
         nalogSerialized = NalogSerializer(nalog).data
-        json = JSONRenderer().render({'nalog': nalogSerialized, 'nastavnik': nastavnikSerialized})
+        json = JSONRenderer().render({'nalog': nalogSerialized, 'user': nastavnikSerialized,
+                                      'token': request.data['token'], 'authenticatedAs': 'Nastavnik'})
         return HttpResponse(json)
     elif nalog.uloga == 'Sekretar':
         sekretarSerialized = {
@@ -49,5 +52,6 @@ def authorize(request):
             "prezime": response['family_name']
         }
         nalogSerialized = NalogSerializer(nalog).data
-        json = JSONRenderer().render({'nalog': nalogSerialized, 'sekretar': sekretarSerialized})
+        json = JSONRenderer().render({'nalog': nalogSerialized, 'user': sekretarSerialized,
+                                      'token': request.data['token'], 'authenticatedAs': 'Sekretar'})
         return HttpResponse(json)
