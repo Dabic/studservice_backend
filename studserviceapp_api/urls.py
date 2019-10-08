@@ -16,7 +16,9 @@ urlpatterns = [
 
     path('izmeni-grupu/', izborne_grupe.izmeniIzbornuGrupu),
 
-    path('izborne-grupe/<str:godina>/', izborne_grupe.getIzborneGrupe),
+    path('izborne-grupe/<str:godina>/', izborne_grupe.getIzborneGrupeGodina),
+
+    path('izborne-grupe/', izborne_grupe.getAllIzborneGrupe),
 
     # GRUPE
     path('grupe/', grupe.getAllGrupe),

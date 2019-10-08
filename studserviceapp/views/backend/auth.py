@@ -16,6 +16,7 @@ import json as jsn
 def authorize(request):
     response = JSONParser().parse(io.BytesIO(requests.get('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token='+request.data['token']).content))
     username = response['email'].split('@')[0]
+    print(response)
     try:
         nalog = Nalog.objects.get(username=username)
     except Nalog.DoesNotExist:
