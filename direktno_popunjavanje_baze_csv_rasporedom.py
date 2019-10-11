@@ -6,7 +6,6 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "studservice_backend.settings")
 django.setup()
 
 from studserviceapp.models import *
-from popunjavanjeStudenata_script import scipt_popunjavanje_tima
 from django.utils import timezone
 from studserviceapp import korisne_funkcije
 
@@ -211,4 +210,3 @@ def popunjavanje_baze():
 '''import timeit
 t = timeit.Timer(setup='from csvParser import parsuj_csv_raspored', stmt='parsuj_csv_raspored()')'''
 popunjavanje_baze()
-scipt_popunjavanje_tima()
