@@ -13,7 +13,7 @@ from studserviceapp_api.permissions import permissions
 
 @api_view(['GET'])
 @permission_classes([permissions.AdminPermission | permissions.SekretarPermission])
-def getGrupePoGodini(request, godina):
+def get_grupe_po_godini(request, godina):
     grupa = Grupa.objects.filter(oznaka_grupe__startswith=godina, semestar=vrati_trenutni_semestar())
     json = JSONRenderer().render(GrupaSerializer(grupa, many=True).data)
     return HttpResponse(json)
@@ -21,7 +21,7 @@ def getGrupePoGodini(request, godina):
 
 @api_view(['GET'])
 @permission_classes([permissions.AdminPermission | permissions.SekretarPermission])
-def getAllGrupe(request, godina):
+def get_all_grupe(request, godina):
     grupa = Grupa.objects.filter(semestar=vrati_trenutni_semestar())
     json = JSONRenderer().render(GrupaSerializer(grupa, many=True).data)
     return HttpResponse(json)

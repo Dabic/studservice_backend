@@ -15,7 +15,7 @@ from studserviceapp import korisne_funkcije
         permissions.SekretarPermission
     ]
 )
-def getRasporedPredavanja(request):
+def get_raspored_predavanja(request):
     termini = korisne_funkcije.svi_termini_tekuceg_rasporeda()
     serializer = TerminSerializer(termini, many=True)
     json = JSONRenderer().render(serializer.data)
@@ -31,7 +31,7 @@ def getRasporedPredavanja(request):
         permissions.SekretarPermission
     ]
 )
-def getRasporedIspita(request):
+def get_raspored_ispita(request):
     pass
 
 
@@ -44,7 +44,7 @@ def getRasporedIspita(request):
         permissions.SekretarPermission
     ]
 )
-def getRasporedKolokvijuma(request):
+def get_raspored_kolokvijuma(request):
     termini = korisne_funkcije.svi_termini_tekuceg_rasporeda()
     serializer = TerminSerializer(termini, many=True)
     json = JSONRenderer().render(serializer.data)

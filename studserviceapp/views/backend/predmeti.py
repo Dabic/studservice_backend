@@ -8,9 +8,9 @@ from studserviceapp_api.permissions.AdminPermission import AdminPermission
 
 @api_view(['GET'])
 @permission_classes([AdminPermission])
-def getAllPredmeti(request):
+def get_all_predmeti(request):
     predmeti = korisne_funkcije.vrati_predmete_tekuceg_semestra()
-    json =  JSONRenderer().render(PredmetSerializer(predmeti, many=True).data)
+    json = JSONRenderer().render(PredmetSerializer(predmeti, many=True).data)
     return HttpResponse(json)
 
 
