@@ -1,5 +1,5 @@
 from django.urls import path
-from studserviceapp.views.backend import rasporedi, predmeti, grupe, izborne_grupe, studenti, obavestenja, auth, email
+from studserviceapp.views.backend import rasporedi, predmeti, grupe, izborne_grupe, studenti, obavestenja, auth, email, nalozi
 
 urlpatterns = [
     # RASPORED
@@ -42,5 +42,8 @@ urlpatterns = [
     path('authorize/', auth.authorize),
 
     #EMAIL
-    path('email-categories/', email.get_email_categories),
+    path('send-email/', email.send_email),
+
+    #NALOZI
+    path('get-nalozi/', nalozi.get_all_nalozi)
 ]

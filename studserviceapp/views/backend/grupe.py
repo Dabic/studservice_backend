@@ -21,7 +21,7 @@ def get_grupe_po_godini(request, godina):
 
 @api_view(['GET'])
 @permission_classes([permissions.AdminPermission | permissions.SekretarPermission])
-def get_all_grupe(request, godina):
+def get_all_grupe(request):
     grupa = Grupa.objects.filter(semestar=vrati_trenutni_semestar())
     json = JSONRenderer().render(GrupaSerializer(grupa, many=True).data)
     return HttpResponse(json)
